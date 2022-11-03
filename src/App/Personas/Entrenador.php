@@ -2,6 +2,8 @@
 
 namespace App;
 
+include __DIR__."./../autoload.php";
+
 class Entrenador extends Empleado{
     private int $nivelEntrenador;
     private int $numFederacion;

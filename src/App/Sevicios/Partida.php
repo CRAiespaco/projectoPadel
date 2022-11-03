@@ -2,6 +2,8 @@
 
 namespace App;
 
+include __DIR__."./../autoload.php";
+
 class Partida extends Pareja{
     private Pareja $pareja1;
     private Pareja $pareja2;

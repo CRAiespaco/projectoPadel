@@ -30,12 +30,12 @@ class HorarioMensual{
     }
 
     public function generarHorarios(): ?HorarioMensual{
-        //TODO función para generar los horarios mensuales
+        //TODO función para generar los Horarios mensuales
         return $this;
     }
 
     public function devolverNumHoras():integer{
-        //TODO función para generar los horarios mensuales
+        //TODO función para generar los Horarios mensuales
         return $this;
     }
 

@@ -2,6 +2,12 @@
 
 namespace App;
 
+use app\Personas\Persona;
+use app\Personas\Enums\LadoPreferido;
+use app\Personas\Enums\ManoHabil;
+
+include __DIR__."./../autoload.php";
+
 class Jugador extends Persona{
     private int $nivelJuego;
     private ManoHabil $manoHabil;

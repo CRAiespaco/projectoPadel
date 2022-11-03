@@ -2,6 +2,9 @@
 
 namespace App;
 
+include __DIR__."./../autoload.php";
+
+
 class Pareja extends Jugador{
 
     private Jugador $jugador1;

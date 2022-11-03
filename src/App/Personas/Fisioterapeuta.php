@@ -2,6 +2,8 @@
 
 namespace App;
 
+include __DIR__."./../autoload.php";
+
 class Fisioterapeuta extends Empleado{
     private $clienteVIP;
     private $numColegiado;

@@ -8,12 +8,7 @@ class HorarioDiario{
     private $hora_cierre;
     private $duracionIntervalos;
 
-    /**
-     * @param $fecha
-     * @param $hora_apertura
-     * @param $hora_cierre
-     * @param $duracionIntervalos
-     */
+
     public function __construct(date $fecha,Hora $hora_apertura,Hora $hora_cierre,int $duracionIntervalos)
     {
         $this->fecha = $fecha;
@@ -58,13 +53,14 @@ class HorarioDiario{
         $this->duracionIntervalos = $duracionIntervalos;
     }
 
+
     public function generarIntervalo(): ?HorarioDiario{
-        //TODO fincion que te devuelve las horas diarias
+
         return $this;
     }
 
     public function imprimirHorarioDiario(): string{
-        //TODO imprime los horarios
+        //TODO imprime los Horarios
         return $this;
     }
 }
