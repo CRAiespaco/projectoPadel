@@ -45,12 +45,6 @@ class PersonaDAOMySQL extends PersonaDAO
         else
             return null;
 
-
-
-
-
-
-
         //  ".$persona->getDNI().",NOMBRE=".$persona->getNombre().", APELLIDOS=".$persona->getApellidos().",telefono=".$persona->getTelefono()."
         //    CORREOELECTRONICO=".$persona->getCorreo().", CONTRASENYA=".$persona->getContrasenya();
         //    return null;
@@ -73,9 +67,35 @@ class PersonaDAOMySQL extends PersonaDAO
     public function borrarPersona(Persona $persona): ?Persona
     {
         $resultado = $this->borrarPersonaPorDNI($persona->getDni());
-        if($resultado)
+        if($resultado) {
             return $persona;
-        else
+        }
+        else{
             return $resultado;
+        };
+    }
+
+    public function insertarPersona(Persona $persona):?Persona{
+        $query="INSER INTP persona(DNI,Nombre,Apellidos,Telefono,CorreoElectronico,contrasenya)
+         VALUES(:dni,:nombre,:apellidos,:teledono,:correo,:pass)";
+
+        $sentencia=$this->getConexion()->prepare();
+
+        $sentencia->bindValue("dni",$persona->getDni());
+        $sentencia->bindValue("nombre",$persona->getNombre());
+        $sentencia->bindValue("apellidos",$persona->getApellidos());
+        $sentencia->bindValue("telefono",$persona->getTelefono());
+        $sentencia->bindValue("correo",$persona->getCorreo());
+        $sentencia->bindValue("pass",$persona->getContrasenya());
+
+        $resultado=$sentencia->execute();
+
+        if($resultado) {
+            return $persona;
+        }
+        else{
+            return 0;
+        }
+
     }
 }
