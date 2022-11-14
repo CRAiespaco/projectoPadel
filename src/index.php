@@ -1,30 +1,26 @@
 <?php
 
 //  use \App\Personas\Persona;
-namespace APP;
+namespace App;
 
-use app\personas\enums\LadoPreferido;
-use app\personas\enums\ManoHabil;
-use app\personas\Jugador;
-use app\autoload;
+use \App\Personas\Persona;
+use \App\Horarios\Intervalo;
+use Modelo\PersonaDAOMySQL;
 
 include "autoload.php";
 
-//include_once("app/Personas/Persona.php");
-//include_once("app/Personas/Jugador.php");
-//include_once("app/Personas/Enums/LadoPreferido.php");
-//include_once("app/Personas/Enums/ManoHabil.php");
-//include_once("app/Personas/Enums/ManoHabil.php");
+$personaDAO = new PersonaDAOMySQL();
 
-$persona = new \App\Persona('12345678E', 'Javier', 'Gonzalez');
-var_dump($persona);
-echo "<br></br>";
-echo "<br></br>";
+$personaLeida = $personaDAO->leerPersona('44111222A');
 
-$jugador=new \App\Jugador("1651435W","Rocio","Carratala",
-    1,ManoHabil::Derecha,LadoPreferido::Indiferente,
-    3,1,false,122,2,1,true,1236);
+$personaAmodificar = new Persona('44111222A', 'Javier', 'Azpeleta', 'javierraz@gmail.com', '1234', '987456321');
 
-var_dump($jugador);
+$resutado = $personaDAO->modificarPersona($personaAmodificar);
 
-echo "hola,padel";
+var_dump($personaLeida);
+
+if ($personaDAO->getConexion()) {
+    echo "Se ha conectado correctamente";
+} else {
+    echo "fallo de conexion";
+}
