@@ -1,8 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Personas\Enums;
 
-enum ManoHabil{
+enum ManoHabil
+{
     case Izquierda;
     case Derecha;
     case Ambidiestro;

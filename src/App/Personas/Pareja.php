@@ -1,46 +1,71 @@
 <?php
 
-namespace App;
+namespace App\Personas;
+include __DIR__."/../../autoload.php";
 
-include __DIR__."./../autoload.php";
+use App\Personas\Jugador;
 
-
-class Pareja extends Jugador{
-
+class Pareja
+{
     private Jugador $jugador1;
     private Jugador $jugador2;
 
-    public function __construct(string $dni,string $nombre,string $apellidos,int $nivelJuego, $manoHabil, $ladoPreferido,int $indiceDeIrresponsabilidad,HorarioMensual $horarioMensualPreerido,boolean $renovacionAutomaticaHorario,int $numFederacion,Jugador $jugador1,Jugador $jugador2)
+    /**
+     * @param Jugador $jugador1
+     * @param Jugador $jugador2
+     */
+    public function __construct(Jugador $jugador1, Jugador $jugador2)
     {
-        parent::__construct($dni,$nombre,$apellidos,$nivelJuego,$manoHabil,$ladoPreferido,$indiceDeIrresponsabilidad,$horarioMensualPreerido,$renovacionAutomaticaHorario,$numFederacion);
         $this->jugador1 = $jugador1;
         $this->jugador2 = $jugador2;
     }
 
-
-    public function getJugador1()
+    /**
+     * @return mixed
+     */
+    public function getJugador1():Jugador
     {
         return $this->jugador1;
     }
 
-    public function setJugador1($jugador1): void
+    /**
+     * @param mixed $jugador1
+     * @return Pareja
+     */
+    public function setJugador1(Jugador $jugador1):Pareja
     {
         $this->jugador1 = $jugador1;
+        return $this;
     }
 
-
-    public function getJugador2()
+    /**
+     * @return mixed
+     */
+    public function getJugador2():Jugador
     {
         return $this->jugador2;
     }
 
-    public function setJugador2($jugador2): void
+    /**
+     * @param mixed $jugador2
+     * @return Pareja
+     */
+    public function setJugador2(Jugador $jugador2):Pareja
     {
         $this->jugador2 = $jugador2;
-    }
-
-    public function generalParejas():Pareja{
-        //TODO funcion que devuelve una pareja
         return $this;
     }
+
+    public function generarPareja():Pareja
+    {
+        /*
+         * TODO implementar funcionalidad para crear pareja
+         * basado en el lado en el que juegan si aceptan partidas mixtas
+         * la mano preferida y los Horarios que tienen disponibles
+         */
+        return $this;
+    }
+
+
+
 }

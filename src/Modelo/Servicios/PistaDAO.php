@@ -4,42 +4,41 @@ namespace Modelo\Servicios;
 
 use App\Servicios\Pista;
 
-class PistaDOA implements InterfazPista
+class PistaDAO implements InterfazPista
 {
-
-    public function insertarPista(Pista $pista):?Pista
+    public function insertarPista(Pista $pista): ?Pista
     {
         // TODO: Implement insertarPista() method.
         return null;
     }
 
-    public function modificarPista(Pista $pista):?Pista
+    public function modificarPista(Pista $pista): ?Pista
     {
         // TODO: Implement modificarPista() method.
         return null;
     }
 
-    public function borrarPista(Pista $pista):?Pista
+    public function borrarPista(Pista $pista): ?Pista
     {
         // TODO: Implement borrarPista() method.
         return null;
     }
 
-    public function borrarPistaPorID(int $idPista):?Pista
+    public function borrarPistaPorId(int $idPista): ?Pista
     {
-        // TODO: Implement borrarPistaPorID() method.
+        // TODO: Implement borrarPistaPorId() method.
         return null;
     }
 
-    public function leerPista(Pista $pista):?Pista
+    public function leerPista(int $idPista): ?Pista
     {
         // TODO: Implement leerPista() method.
         return null;
     }
 
-    public function leerTodasLasPista():?array
+    public function leerTodasLasPistas(): ?array
     {
-        // TODO: Implement leerTodasLasPista() method.
+        // TODO: Implement leerTodasLasPistas() method.
         return null;
     }
 }

@@ -1,142 +1,260 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
-use app\Personas\Persona;
-use app\Personas\Enums\LadoPreferido;
-use app\Personas\Enums\ManoHabil;
+use App\Personas\Entrenador;
+use App\Horarios\HorarioMensual;
+use App\Personas\Persona;
+use App\Personas\Enums\LadoPreferido;
+use App\Personas\Enums\ManoHabil;
 
-include __DIR__."./../autoload.php";
+include __DIR__."/../../autoload.php";
 
-class Jugador extends Persona{
+class Jugador extends Persona
+{
     private int $nivelJuego;
     private ManoHabil $manoHabil;
     private LadoPreferido $ladoPreferido;
-    private int $indiceDeIrresponsabilidad;
-    private HorarioMensual $horarioMensualPreerido;
+    private int $indiceDeIrresponsabilidad=0;
+    private int $numFederado;
+    private HorarioMensual $horarioMensualPreferido;
     private bool $renovacionAutomaticaHorario;
-    private int $numFederacion;
     private Fisioterapeuta $fisioAsociado;
-    private Entrenador$entrenadorPersonal;
-    private bool $mixtas;
+    private Entrenador $entrenadorAsociado;
+    private bool $partidasMixtas;
     private int $socio;
-    private \DateTime $altaSocio;
+    private \DateTime $fechaAltaSocio;
 
-
-    public function __construct(string $dni,string $nombre,string $apellidos,int $nivelJuego, $manoHabil, $ladoPreferido,int $indiceDeIrresponsabilidad,HorarioMensual $horarioMensualPreerido,bool $renovacionAutomaticaHorario,int $numFederacion, Fisioterapeuta $fisioAsociado, Entrenador$entrenadorPersonal,bool $mixtas,int $socio){
-        parent::__construct($dni,$nombre,$apellidos);
+    /**
+     * @param string $dni
+     * @param string $nombre
+     * @param string $apellidos
+     * @param int $nivelJuego
+     * @param ManoHabil $manoHabil
+     * @param LadoPreferido $ladoPreferido
+     */
+    public function __construct(string $dni,string $nombre,string $apellidos,
+        string $correoElectronico, string $contrasenya,
+        int $nivelJuego, ManoHabil $manoHabil,LadoPreferido $ladoPreferido,
+        string $telefono=null)
+    {
+        parent::__construct($dni,$nombre,$apellidos,$correoElectronico,$contrasenya, $telefono);
         $this->nivelJuego = $nivelJuego;
         $this->manoHabil = $manoHabil;
         $this->ladoPreferido = $ladoPreferido;
-        $this->indiceDeIrresponsabilidad=$indiceDeIrresponsabilidad;
-        $this->horarioMensualPreerido = $horarioMensualPreerido;
-        $this->renovacionAutomaticaHorario = $renovacionAutomaticaHorario;
-        $this->numFederacion = $numFederacion;
-        $this->fisioAsociado = $fisioAsociado;
-        $this->entrenadorPersonal = $entrenadorPersonal;
-        $this->mixtas = $mixtas;
-        $this->socio = $socio;
     }
 
-
-    public function getNivelJuego(): int{
+    /**
+     * @return int
+     */
+    public function getNivelJuego(): int
+    {
         return $this->nivelJuego;
     }
 
-    public function setNivelJuego(int $nivelJuego): Jugador{
+    /**
+     * @param int $nivelJuego
+     * @return Jugador
+     */
+    public function setNivelJuego(int $nivelJuego): Jugador
+    {
         $this->nivelJuego = $nivelJuego;
+        return $this;
     }
 
-
-    public function getManoHabil(): ManoHabil{
+    /**
+     * @return int
+     */
+    public function getManoHabil(): ManoHabil
+    {
         return $this->manoHabil;
     }
 
-    public function setManoHabil(LadoPreferido $manoHabil): ManoHabil{
+    /**
+     * @param ManoHabil $manoHabil
+     * @return Jugador
+     */
+    public function setManoHabil(ManoHabil $manoHabil): Jugador
+    {
         $this->manoHabil = $manoHabil;
+        return $this;
     }
 
-
-    public function getLadoPreferido(): LadoPreferido{
+    /**
+     * @return int
+     */
+    public function getLadoPreferido(): LadoPreferido
+    {
         return $this->ladoPreferido;
     }
 
-    public function setLadoPreferido(ManoHabil $ladoPreferido): LadoPreferido{
+    /**
+     * @param int $ladoPreferido
+     * @return Jugador
+     */
+    public function setLadoPreferido(LadoPreferido $ladoPreferido): Jugador
+    {
         $this->ladoPreferido = $ladoPreferido;
+        return $this;
     }
 
-
-
-    public function getIndiceDeIrresponsabilidad(): int{
+    /**
+     * @return int
+     */
+    public function getIndiceDeIrresponsabilidad(): int
+    {
         return $this->indiceDeIrresponsabilidad;
     }
 
-    public function setIndiceDeIrresponsabilidad(int $indiceDeIrresponsabilidad): Jugador{
+    /**
+     * @param int $indiceDeIrresponsabilidad
+     * @return Jugador
+     */
+    public function setIndiceDeIrresponsabilidad(int $indiceDeIrresponsabilidad): Jugador
+    {
         $this->indiceDeIrresponsabilidad = $indiceDeIrresponsabilidad;
+        return $this;
     }
 
-
-    public function getHorarioMensualPreerido(): HorarioMensual{
-        return $this->horarioMensualPreerido;
+    /**
+     * @return mixed
+     */
+    public function getNumFederado():int
+    {
+        return $this->numFederado;
     }
 
-    public function setHorarioMensualPreerido(HorarioMensual $horarioMensualPreerido): HorarioMensual{
-        $this->horarioMensualPreerido = $horarioMensualPreerido;
+    /**
+     * @param mixed $numFederado
+     * @return Jugador
+     */
+    public function setNumFederado(int $numFederado)
+    {
+        $this->numFederado = $numFederado;
+        return $this;
     }
 
-
-    public function isRenovacionAutomaticaHorario(): bool{
+    /**
+     * @return mixed
+     */
+    public function getRenovacionAutomaticaHorario():bool
+    {
         return $this->renovacionAutomaticaHorario;
     }
 
-    public function setRenovacionAutomaticaHorario(bool $renovacionAutomaticaHorario): bool{
+    /**
+     * @param mixed $renovacionAutomaticaHorario
+     * @return Jugador
+     */
+    public function setRenovacionAutomaticaHorario($renovacionAutomaticaHorario):Jugador
+    {
         $this->renovacionAutomaticaHorario = $renovacionAutomaticaHorario;
+        return $this;
     }
 
-
-    public function getNumFederacion(): int{
-        return $this->numFederacion;
-    }
-
-    public function setNumFederacion(int $numFederacion): Jugador{
-        $this->numFederacion = $numFederacion;
-    }
-
-
-    public function getFisioAsociado():Fisioterapeuta{
+    /**
+     * @return mixed
+     */
+    public function getFisioAsociado():Fisioterapeuta
+    {
         return $this->fisioAsociado;
     }
 
-    public function setFisioAsociado(Fisioterapeuta $fisioAsociado): Fisioterapeuta{
+    /**
+     * @param mixed $fisioAsociado
+     * @return Jugador
+     */
+    public function setFisioAsociado(Fisioterapeuta $fisioAsociado)
+    {
         $this->fisioAsociado = $fisioAsociado;
+        return $this;
     }
 
-
-    public function getEntrenadorPersonal(): Entrenador{
-        return $this->entrenadorPersonal;
+    /**
+     * @return mixed
+     */
+    public function getEntrenadorAsociado():Entrenador
+    {
+        return $this->entrenadorAsociado;
     }
 
-    public function setEntrenadorPersonal(Entrenador $entrenadorPersonal): Entrenador{
-        $this->entrenadorPersonal = $entrenadorPersonal;
+    /**
+     * @param mixed $entrenadorAsociado
+     * @return Jugador
+     */
+    public function setEntrenadorAsociado(Entrenador $entrenadorAsociado)
+    {
+        $this->entrenadorAsociado = $entrenadorAsociado;
+        return $this;
     }
 
-
-    public function isMixtas(): bool{
-        return $this->mixtas;
+    /**
+     * @return mixed
+     */
+    public function getMixtas():bool
+    {
+        return $this->partidasMixtas;
     }
 
-    public function setMixtas(bool $mixtas): bool{
-        $this->mixtas = $mixtas;
+    /**
+     * @param mixed $mixtas
+     * @return Jugador
+     */
+    public function setMixtas(bool $mixtas)
+    {
+        $this->partidasMixtas = $mixtas;
+        return $this;
     }
 
-
-    public function isSocio(): bool{
+    /**
+     * @return mixed
+     */
+    public function getSocio():int
+    {
         return $this->socio;
     }
 
-    public function setSocio(bool $socio): Jugador{
-        $this->socio = $socio;
+
+    public function altaSocio(){
+        //TODO buscar el siguiente número de socio en la base de datos
+        //PDO->query("Select id from jugador where dni=?")
+        $this->fechaAltaSocio=new \DateTime();
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getHorarioMensualPreferido():HorarioMensual
+    {
+        return $this->horarioMensualPreferido;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaAltaSocio(): \DateTime
+    {
+        return $this->fechaAltaSocio;
+    }
+
+    /**
+     * @param \DateTime $fechaAltaSocio
+     * @return Jugador
+     */
+    public function setFechaAltaSocio(): Jugador
+    {
+        $this->fechaAltaSocio = new \DateTime();
+        return $this;
+    }
+
+
+    public function generarHorarioPreferido(bool $renovacion):Jugador{
+
+        //TODO implementar la generación de Horarios preferidos para el usuario
+        return $this;
+    }
+
 
 
 

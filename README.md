@@ -1,12 +1,7 @@
-# Repositorio de ejmplos de DWS curso 202-2023
-Ejemplos DWS curso 2022-2023
+# Repositorio de proyecto de Club de Padel
+DWES curso 22-23
 
-## Introducción a Markdown
-Proyecto padel
-* Permite la inclusión de código resaltado
-* Podemos destacar multitud de lenguajes.
+## Introducción al proyecto
+Proyecto de club de Padel como ejemplo de uso de POO en PHP versión 8.
 
-```php
-echo phpinfo(); //Este ha sido mi primer programa
-
-```
+![Diagrama de Clases](src/images/image.png)

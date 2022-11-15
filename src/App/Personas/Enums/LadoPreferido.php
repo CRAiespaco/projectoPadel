@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Personas\Enums;
 
-enum LadoPreferido{
-    case Izquierda;
-    case Derecha;
-    case Indiferente;
+enum LadoPreferido
+{
+    case Izquierdo;
+    case Derecho;
+    case Indistinto;
 }

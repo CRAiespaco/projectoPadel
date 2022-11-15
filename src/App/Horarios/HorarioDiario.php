@@ -1,66 +1,154 @@
 <?php
 
-namespace App;
+namespace App\Horarios;
 
-class HorarioDiario{
-    private $fecha;
-    private $hora_apertura;
-    private $hora_cierre;
-    private $duracionIntervalos;
+use App\Horarios\Excepciones\HoraNoValidaException;
+
+include __DIR__ . "/../../autoload.php";
 
 
-    public function __construct(date $fecha,Hora $hora_apertura,Hora $hora_cierre,int $duracionIntervalos)
+class HorarioDiario
+{
+    private \DateTime $fecha;
+    private float $horaApertura;
+    private float $horaCierre;
+    private int $duracionIntervalos;
+    private array $intervalosDelDia;
+
+    /**
+     * @param $fecha
+     * @param $horaApertura
+     * @param $horaCierre
+     * @param $duracionIntervalos
+     */
+    public function __construct(\DateTime $fecha, float $horaApertura, float $horaCierre, int $duracionIntervalos)
     {
         $this->fecha = $fecha;
-        $this->hora_apertura = $hora_apertura;
-        $this->hora_cierre = $hora_cierre;
+        if($horaApertura<0 || $horaApertura>23){
+            throw new HoraNoValidaException("Hora de Apertura no valida");
+        }
+        if ($horaCierre<0 || $horaCierre>23){
+            throw new HoraNoValidaException("Hora de Cierre no valida");
+        }
+        if($horaApertura>=$horaCierre){
+            throw new HoraNoValidaException("Hora de Apertura Mayor que la de cierre");
+        }
+        if(Intervalo::calcularFinIntervalo($horaApertura,$duracionIntervalos)>$horaCierre){
+            throw new HoraNoValidaException("Imposible crear un solo intervalo");
+        }
+        if($horaApertura-intval($horaApertura)>0.59){
+            throw new HoraNoValidaException("Parte fraccionaria de la hora de apertura no valida");
+        }
+        if($horaCierre-intval($horaCierre)>0.59){
+            throw new HoraNoValidaException("Parte fraccionaria de la hora de apertura no valida");
+        }
+
+        $this->horaApertura = $horaApertura;
+        $this->horaCierre = $horaCierre;
         $this->duracionIntervalos = $duracionIntervalos;
     }
 
-
-    public function getFecha(){
+    /**
+     * @return mixed
+     */
+    public function getFecha(): \DateTime
+    {
         return $this->fecha;
     }
 
-    public function setFecha($fecha): void{
+    /**
+     * @param mixed $fecha
+     * @return HorarioDiario
+     */
+    public function setFecha(\DateTime $fecha): HorarioDiario
+    {
         $this->fecha = $fecha;
+        return $this;
     }
 
-
-    public function getHoraApertura(){
-        return $this->hora_apertura;
+    /**
+     * @return mixed
+     */
+    public function getHoraApertura(): float
+    {
+        return $this->horaApertura;
     }
 
-    public function setHoraApertura($hora_apertura): Hora{
-        $this->hora_apertura = $hora_apertura;
+    /**
+     * @param mixed $horaApertura
+     * @return HorarioDiario
+     */
+    public function setHoraApertura(float $horaApertura): HorarioDiario
+    {
+        $this->horaApertura = $horaApertura;
+        return $this;
     }
 
-
-    public function getHoraCierre(){
-        return $this->hora_cierre;
+    /**
+     * @return mixed
+     */
+    public function getHoraCierre(): float
+    {
+        return $this->horaCierre;
     }
 
-    public function setHoraCierre($hora_cierre): Hora{
-        $this->hora_cierre = $hora_cierre;
+    /**
+     * @param mixed $horaCierre
+     * @return HorarioDiario
+     */
+    public function setHoraCierre(float $horaCierre): HorarioDiario
+    {
+        $this->horaCierre = $horaCierre;
+        return $this;
     }
 
-
-    public function getDuracionIntervalos(){
+    /**
+     * @return mixed
+     */
+    public function getDuracionIntervalos(): int
+    {
         return $this->duracionIntervalos;
     }
 
-    public function setDuracionIntervalos($duracionIntervalos): int{
+    /**
+     * @param mixed $duracionIntervalos
+     * @return HorarioDiario
+     */
+    public function setDuracionIntervalos(int $duracionIntervalos): HorarioDiario
+    {
         $this->duracionIntervalos = $duracionIntervalos;
-    }
-
-
-    public function generarIntervalo(): ?HorarioDiario{
-
         return $this;
     }
 
-    public function imprimirHorarioDiario(): string{
-        //TODO imprime los Horarios
+    /**
+     * @return mixed
+     */
+    public function getIntervalosDelDia(): array
+    {
+        return $this->intervalosDelDia;
+    }
+
+    /**
+     * @param mixed $intervalosDelDia
+     * @return HorarioDiario
+     */
+    public function setIntervalosDelDia(array $intervalosDelDia)
+    {
+        $this->intervalosDelDia = $intervalosDelDia;
         return $this;
     }
+
+    public function generarIntervalos(): ?HorarioDiario
+    {
+        //TODO Función para crear el array de intervalos del día
+        return $this;
+    }
+
+    public function imprimirHorarioDiario(): string
+    {
+        //TODO Función que recorra el array de Horarios y lo imprima
+        return "Función por implementar";
+    }
+
+
 }

@@ -1,18 +1,28 @@
 <?php
 
-namespace  Modelo;
+namespace Modelo\Personas;
 
 use App\Personas\Persona;
-use \PDO;
+use PDO;
 
-abstract class PersonaDAO implements InterfazPersonas{
+abstract class PersonaDAO implements InterfazPersonas
+{
     private PDO $conexion;
 
-    public function getConexion(): PDO{
+    /**
+     * @return PDO
+     */
+    public function getConexion(): PDO
+    {
         return $this->conexion;
     }
 
-    public function setConexion(PDO $conexion): PersonaDAO {
+    /**
+     * @param PDO $conexion
+     * @return PersonaDAO
+     */
+    public function setConexion(PDO $conexion): PersonaDAO
+    {
         $this->conexion = $conexion;
         return $this;
     }
@@ -34,40 +44,42 @@ abstract class PersonaDAO implements InterfazPersonas{
         // TODO: Implement borrarPersona() method.
     }
 
-    public function borrarPersonaporDNI(string $DNI): ?Persona
+    public function borrarPersonaPorDNI(string $dni): ?Persona
     {
-        // TODO: Implement borrarPersonaporDNI() method.
+        // TODO: Implement borrarPersonaPorDNI() method.
     }
 
-    public function leerPersona(string $DNI): ?Persona
+    public function leerPersona(string $dni): ?Persona
     {
         // TODO: Implement leerPersona() method.
     }
 
-    public function leerTodaslasPersona(): array
+    public function leerTodasLasPersonas(): array
     {
-        // TODO: Implement leerTodaslasPersona() method.
+        // TODO: Implement leerTodasLasPersonas() method.
     }
 
-    public function ObtenerPersonasSinTelefono(): array
+    public function obtenerPersonasSinTelefono(): ?array
     {
-        // TODO: Implement ObtenerPersonasSinTelefono() method.
+        // TODO: Implement obtenerPersonasSinTelefono() method.
     }
 
-    public function ObtenerPersonasPorNombre(string $nombre): array
+    public function obtenerPersonasPorNombre(string $nombre): ?array
     {
-        // TODO: Implement ObtenerPersonasPorNombre() method.
+        // TODO: Implement obtenerPersonasPorNombre() method.
     }
 
-    public function ObtenerPersonasPorApellidos(string $apellidos): array
+    public function obtenerPersonasPorApellidos(string $apellidos): ?array
     {
-        // TODO: Implement ObtenerPersonasPorApellidos() method.
+        // TODO: Implement obtenerPersonasPorApellidos() method.
     }
 
-    public function ObtenerRangoPersonas(int $inicio, int $numeroResultados=NUMERODERESULTADOPORPAGINA): array
+    public function obtenerRangoPersonas(int $inicio, int $numeroResultados=NUMERODERESULTADOSPORPAGINA): array
     {
-        // TODO: Implement ObtenerRangoPersonas() method.
+        // TODO: Implement obtenerRangoPersonas() method.
     }
+    public function leerPersonaPorCorreoElectronico(string $correoElectronico):?Persona{
 
+    }
 
 }
